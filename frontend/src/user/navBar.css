@@ -1,0 +1,17 @@
+.navBarHeading{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 1px solid grey;
+    margin-bottom: 1em;
+    align-items: center;
+}
+.navBarIcons svg{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+/* .navBarLine{
+    height: 1px;
+    width: 100%;
+    color: grey;
+} */

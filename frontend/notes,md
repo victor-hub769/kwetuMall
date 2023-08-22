@@ -1,0 +1,27 @@
+###How to create a backend
+```
+1: create a folder named backend
+2:cd into backend folder
+3: Write the command npm init
+4: access package.json in backend and delete the "test" code line and replace it with "start": "nodemon index.js"
+5: Then under the "main" code line add  "type": "module",
+6; in the terminal run npm install nodemon
+                       npm install body-parser
+                       npm install express 
+6: Create index.js file
+7: then write the following code in the index file
+import  express  from 'express';
+import bodyParser from "body-parser";
+
+const app= express();
+const PORT= 5000;
+app.use(bodyParser.json());
+
+app.listen(PORT,()=>{
+    console.log("server listening on PORT: "+PORT)
+});
+
+
+import cors from 'cors';
+ it enables communication btwn backend and frontend.
+```

@@ -12,3 +12,10 @@
     import cors from 'cors';
  it enables communication btwn backend and frontend.
 ```
+
+### pushing to github
+```
+///git add
+/// git commit -m 'appropriate commit message'
+/// git push origin master
+```

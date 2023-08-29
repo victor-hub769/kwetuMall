@@ -8,7 +8,7 @@ import Row from "react-bootstrap/Row";
 import NavBar from "./NavBar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import publicApi from "../api/publicApi";
+import publicApi from "../../api/publicApi";
 
 const Home = () => {
   const navigate = useNavigate();

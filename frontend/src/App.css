@@ -1,1 +1,22 @@
+.formStyle{
+    height: max-content;
+    margin-top: 6em;
+    padding: 10px;
+    background-color: white;
+    border: solid 1px black;
+    border-radius: 10px;
+    display: block;
+    width: 600px;
+}
 
+.formBody{
+    justify-content: center!important;
+    display: flex;
+    background-image:url("/images/Desktop - 14(1).png");
+    height:100vh
+}
+
+.formm{
+    margin: 1em;
+    padding: 5px;
+}

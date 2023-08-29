@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Sidenav from "./SideNav";
 import Table from "react-bootstrap/Table";
-import publicApi from "../api/publicApi";
+import publicApi from "../../api/publicApi";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import AddPickUpPointModal from "../components/AddPickUpPointModal";
+import AddPickUpPointModal from "../../components/AddPickUpPointModal";
+import EditPickUpPoints from "../../components/EditPickUpPoints";
 
 const PickUpPoints = () => {
+  const [show, setShow] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
   const [pickUpPointsData, setPickUpPointsData] = useState({
     location: "",
     name: "",
@@ -19,16 +22,29 @@ const PickUpPoints = () => {
   };
 
   const createPickUpPoint = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const { data } = await publicApi.post(
       "/pickUpPoint/create",
       pickUpPointsData
     );
     console.log(data);
     if (data.message === "PickUpPoint Created Succesfully") {
-        setPickUpPoints([...pickUpPoints, data.data]);
-        setShowAdd(false);
-      }
+      setPickUpPoints([...pickUpPoints, data.data]);
+      setShow(false);
+    }
+  };
+
+  const updatePickUpPoints = async (e) => {
+    e.preventDefault();
+    const { data } = await publicApi.post(
+      `/pickUpPoint/update/${pickUpPointsData._id}`,
+      pickUpPointsData
+    );
+    console.log(data);
+    if (data.message === "Updated PickUpPoint Successfully") {
+      setPickUpPoints([...pickUpPoints, data.data]);
+      setShowEdit(false);
+    }
   };
 
   useEffect(() => {
@@ -44,6 +60,8 @@ const PickUpPoints = () => {
             pickUpPointsData={pickUpPointsData}
             setPickUpPointsData={setPickUpPointsData}
             createPickUpPoint={createPickUpPoint}
+            show={show}
+            setShow={setShow}
           />
           <Table striped bordered hover size="sm">
             <thead>
@@ -57,12 +75,19 @@ const PickUpPoints = () => {
             <tbody>
               {pickUpPoints.map((pickUpPoint) => {
                 return (
-                  <tr>
+                  <tr key={pickUpPoint._id}>
                     <td>{pickUpPoint._id}</td>
                     <td>{pickUpPoint.location}</td>
                     <td>{pickUpPoint.name}</td>
                     <td>
-                      <EditIcon />
+                      <EditPickUpPoints
+                        updatePickUpPoints={updatePickUpPoints}
+                        pickUpPointsData={pickUpPointsData}
+                        setPickUpPointsData={setPickUpPointsData}
+                        id={pickUpPoint._id}
+                        showEdit={showEdit}
+                        setShowEdit={setShowEdit}
+                      />
                       <DeleteIcon />
                     </td>
                   </tr>

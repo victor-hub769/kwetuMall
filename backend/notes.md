@@ -15,7 +15,7 @@
 
 ### pushing to github
 ```
-///git add
+///git add .
 /// git commit -m 'appropriate commit message'
 /// git push origin master
 ```

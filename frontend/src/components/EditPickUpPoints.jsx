@@ -2,25 +2,46 @@ import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import EditIcon from "@mui/icons-material/Edit";
+import publicApi from "../api/publicApi";
 
-function AddPickUpPointModal({ pickUpPointsData, setPickUpPointsData,createPickUpPoint, show, setShow }) {
+function EditPickUpPoints({
+  updatePickUpPoints,
+  pickUpPointsData,
+  setPickUpPointsData,
+  id,
+  showEdit,
+  setShowEdit,
+}) {
+  const handleClose = () => {
+    setShowEdit(false);
+  };
+  const handleShow = () => {
+    setShowEdit(true);
+  };
 
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const getPickUpPoint = async () => {
+    const { data } = await publicApi.get(`/pickUpPoint/getone/${id}`);
+    console.log(data);
+    setPickUpPointsData(data.data);
+  };
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow} className="btnAdmin">
-        Add PickUp Point
-      </Button>
+      <EditIcon
+        onClick={() => {
+          handleShow();
+          getPickUpPoint();
+        }}
+      />
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={showEdit} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add PickUp Point</Modal.Title>
+          <Modal.Title> Edit pick up points</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={createPickUpPoint}>
+          {" "}
+          <Form onSubmit={updatePickUpPoints}>
             <Form.Group className="mb-3">
               <Form.Label>Location</Form.Label>
               <Form.Control
@@ -49,12 +70,14 @@ function AddPickUpPointModal({ pickUpPointsData, setPickUpPointsData,createPickU
                 }
               />
             </Form.Group>
-            <button className="btnAdmin admin-btn-full">Add PickUp Point</button>
-          </Form>
+            <button className="btnAdmin admin-btn-full">
+              Add PickUp Point
+            </button>
+          </Form>{" "}
         </Modal.Body>
       </Modal>
     </>
   );
 }
 
-export default AddPickUpPointModal;
+export default EditPickUpPoints;

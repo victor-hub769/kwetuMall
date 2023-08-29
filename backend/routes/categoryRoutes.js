@@ -52,6 +52,7 @@ router.post("/category/update/:id", async (req, res) => {
       message: "Updated Category Successfully",
       data: newResponse,
     });
+    
   } catch (err) {
     res.send(err.message);
   }

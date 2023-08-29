@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import "./productDetails.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import publicApi from '../api/publicApi';
+import publicApi from '../../api/publicApi';
 
 const ProductDetails = () => {
   const { id } = useParams();

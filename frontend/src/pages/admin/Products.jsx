@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import SideNav from "./SideNav.jsx";
-import publicApi from "../api/publicApi.js";
+import publicApi from "../../api/publicApi";
 import Table from "react-bootstrap/Table";
-import instance from "../api/publicApi.js";
-import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import Modal from "react-bootstrap/Modal";
-import AddProductModal from "../components/AddProductModal.jsx";
-import EditProductModal from "../components/EditProductModal.jsx";
+import AddProductModal from "../../components/AddProductModal.jsx";
+import EditProductModal from "../../components/EditProductModal.jsx";
 
 const Products = () => {
   const [products, setProducts] = useState([]);

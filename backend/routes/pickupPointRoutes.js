@@ -48,6 +48,7 @@ router.post("/pickUpPoint/update/:id", async (req, res) => {
   try {
     const response = await PickupPointModel.findOne({ _id: req.params.id });
     response.name = req.body.name;
+    response.location=req.body.location;
     const newResponse = await response.save();
     res.send({
       message: "Updated PickUpPoint Successfully",
@@ -59,7 +60,7 @@ router.post("/pickUpPoint/update/:id", async (req, res) => {
 });
 
 router.post("/PickUpPoint/delete/:id", async (req, res) => {
-  categoryModel
+  PickupPointModel
     .deleteOne({ _id: req.params.id })
     .then(() => res.send({ message: "Deleted succesfully" }))
     .catch((err) => res.send(err.message));

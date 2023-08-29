@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Sidenav from "./SideNav";
 import Table from "react-bootstrap/Table";
-import publicApi from "../api/publicApi";
+import publicApi from "../../api/publicApi";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import AddCategoryModal from "../components/AddCategoryModal.jsx";
-import EditCategoryModal from "../components/EditCategoryModal.jsx";
+import AddCategoryModal from "../../components/AddCategoryModal.jsx";
+import EditCategoryModal from "../../components/EditCategoryModal.jsx";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);

@@ -1,5 +1,6 @@
 import express, { response } from "express";
 import exerciseModel from "../models/exerciseModel.js";
+import { get } from "mongoose";
 
 const router = express.Router();
 
@@ -90,6 +91,11 @@ router.post("/student/delete/:id", async (req, res) => {
 // add requests that create , read and update the data in studentMarksModel
 
 export default router;
+
+
+get 
+post 
+
 
 
 

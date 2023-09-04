@@ -12,7 +12,7 @@ import categoryRoutes from './routes/categoryRoutes.js';
 import pickupPointRoutes from "./routes/pickupPointRoutes.js";
 import userAuth from './routes/userAuth.js';
 import adminAuth from './routes/adminAuth.js';
-
+import cartRoutes from './routes/cartRoutes.js'
 
 const app = express();
 const PORT = 5000;
@@ -29,6 +29,7 @@ app.use(express.static('uploads'))
 app.use(cors());
 app.use('/',userAuth);
 app.use('/', adminAuth);
+app.use('/', cartRoutes);
 app.use('/', testRoutes);
 app.use('/', studentRoutes);
 app.use('/', exerciseRoutes);
@@ -42,8 +43,8 @@ app.use('/', pickupPointRoutes);
 // mongodb+srv://victormuriithi996:<password>@cluster0.opozqee.mongodb.net/?retryWrites=true&w=majority
 
 const mongoURL = 'mongodb+srv://victormuriithi996:'+ encodeURIComponent ('evQifMwKvDbapMli')+ '@cluster0.opozqee.mongodb.net/?retryWrites=true&w=majority';
-
-mongoose.connect(mongoURL)
+const mongoURL2 = "mongodb+srv://victormuriithi996:"+ encodeURIComponent ('evQifMwKvDbapMli') + "@cluster0.opozqee.mongodb.net/?retryWrites=true&w=majority"
+mongoose.connect(mongoURL2)
          .then(()=> console.log('Connected to mongodb'))
          .catch((err)=> console.log(err));
 

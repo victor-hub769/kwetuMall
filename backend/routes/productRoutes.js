@@ -78,6 +78,9 @@ router.get("/products", async (req, res) => {
       data: error.message,
     });
   }
+
+
+  
 });
 
 router.get("/products/getone/:id", async (req, res) => {

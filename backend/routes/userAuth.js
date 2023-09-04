@@ -2,6 +2,7 @@ import express from "express";
 import userModel from "../models/userModel.js";
 import bcrypt from "bcrypt"; //used to encrypt passwords
 import jwt from "jsonwebtoken"; // gives us tokens(very long string that contains data)
+import { checkAdminAuth } from "./checkAuth.js";
 
 const router = express.Router();
 const saltRound = 10;
@@ -13,6 +14,11 @@ router.post("/register", (req, res) => {
         message: "User details not found",
       });
     }
+
+
+
+
+
 
     bcrypt.hash(req.body.password, saltRound, async (err, hash) => {
       if (err) {
@@ -69,6 +75,25 @@ router.post("/login", async (req, res) => {
         }
       });
     }
+  }
+});
+
+router.get("/users", checkAdminAuth, async (req, res) => {
+  try {
+    const users = await userModel.find();
+    res.send({
+      message: "Users found successfully",
+      loggedInAdmin:req.admin,
+      data: users,
+    });
+
+
+    
+  } catch (error) {
+    res.send({
+      message: "Error occurred",
+      data: error.message,
+    });
   }
 });
 export default router;

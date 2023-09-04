@@ -14,13 +14,12 @@ const userSchema = new Schema({
         required: true,
         unique: true
     },
-
-
-    
     password:{
         type:String,
         required: true
     },
+    cart: [Object],
+    wishlist:[String]
 });
 
 export default model("userModel", userSchema)

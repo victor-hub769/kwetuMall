@@ -14,9 +14,7 @@ const Home = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const getProducts = async () => {
-    // const { data } = await axios.get("http://localhost:5000/products");
-    const { data } = await publicApi.get("/products/");
-    console.log(data);
+    const { data } = await publicApi.get("/products");
     setProducts(data.data);
   };
 
